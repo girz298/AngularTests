@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+    <script src="js/app.js"></script>
+
+    <script src="js/ParseCtrl/ParseCtrl.js"></script>
+    <script src="js/TwoWayBindings/TwoWayBindings.js"></script>
+    <script src="js/NameSurnameCtrl/NameSurnameCtrl.js"></script>
+
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/main.css">
+
+    <title>First expirience</title>
+</head>
+
+<body ng-app="app">
+    <div class="container">
+        <h1>Телефоны</h1>
+        <div ng-controller="ParseCtrl">
+            <div class="add-data-block">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="add-data-field" >Телефон:</label>
+                        <input type="text" class="form-control" id="add-data-field" ng-model="name" placeholder="Название телефона">
+                        <div class="checkbox">
+                            <input type="checkbox" ng-model="addChecked">Есть на складе
+                        </div>
+                        <input class="btn btn-primary " type="button" value="Добавить телефон" ng-click="addData()">   
+                        <input class="btn btn-danger " type="button" value="Удалить телефон" ng-click="removeData()">   
+                    </div>
+                </form>
+            </div>
+            <div class="find-block">
+                <input type="text"  ng-model="querry">
+                <input type="checkbox" ng-model = "checked">Есть на складе
+              <!--   <ul>
+                    <li ng-repeat="item in items | filter:{name:querry,status:checked}">
+                        {{ item.name }}
+                    </li>
+                </ul> -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Информация</th>
+                            <th>Год выпуска</th>
+                            <th>Наличие на складе</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items | filter:{name:querry,status:checked}">
+                            <td>{{item.name}}</td>
+                            <td>{{item.info}}</td>
+                            <td>{{item.year}}</td>
+                            <td>{{toPlus(item.status)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+           <!--  <ol>
+                <li>{{today | date:'dd/MM/yyyy h:mm:ss'}}</li>
+                <li>{{{'name':"Sergey",'surname':"Rodionov"} | json}}</li>
+            </ol> -->
+        </div>
+    </div>
+</body>
+</html>
+
